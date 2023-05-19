@@ -10,7 +10,7 @@ export async function createShortly(req, res) {
 
         const shortUrl = nanoid()
         await db.query(`INSERT INTO shorten ("shortUrl", "userId")
-                                VALUES ($1,$2)`, [shortUrl, session.id])
+                                VALUES ($1,$2)`, [shortUrl, session.userId])
         const id = await insertUrl(url, shortUrl)
         console.log(id)
 
