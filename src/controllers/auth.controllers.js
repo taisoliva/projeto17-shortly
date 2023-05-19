@@ -24,8 +24,20 @@ export async function SignUp(req, res){
 }
 
 export async function signIn(req, res){
+
+    const {email, password} = req.body
+
     try{
-        res.sendStatus(201)
+        const user = await db.query(`SELECT * FROM users WHERE email ='${email}'`)
+        if(!user.rows[0]) return res.status(401).send("Email ou Senha Inválidos")
+
+        const checkPassword = bcrypt.compareSync(password, user.rows[0].password)
+        if(!checkPassword) return res.status(401).send("Email ou Senha errados")
+
+        const token = uuid()
+        await db.query(`INSERT INTO autorization (token, "userId")
+                                VALUES ($1, $2)`, [token,user.rows[0].id ])
+        res.status(200).send({token: token})
     }catch(err){
         return res.status(500).send(err.message)
     }
