@@ -6,3 +6,8 @@ export const userSchema = joi.object({
     password: joi.string().min(3).required(),
     confirmPassword: joi.string().min(3).required()
 })
+
+export const loginSchema = joi.object({
+    name:joi.string().required(),
+    password: joi.string().min(3).required()
+})
