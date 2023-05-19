@@ -11,9 +11,13 @@ export async function createShortly(req, res) {
         const shortUrl = nanoid()
         await db.query(`INSERT INTO shorten ("shortUrl", "userId")
                                 VALUES ($1,$2)`, [shortUrl, session.id])
-        await insertUrl(url, shortUrl)
+        const id = await insertUrl(url, shortUrl)
+        console.log(id)
 
-        res.sendStatus(201)
+        res.status(201).send({
+            id: id,
+            shortUrl:shortUrl
+        })
     } catch (err) {
         if (err.code === '23505') {  // Código de erro específico para violação de chave única
             return res.status(409).send("ShortUrl Adicionada");
@@ -28,6 +32,7 @@ async function insertUrl(url, shortUrl) {
         const urlLocal = await db.query(`SELECT * FROM shorten WHERE "shortUrl"=$1`, [shortUrl])
         await db.query(`INSERT INTO links (url, "shortId")
                                     VALUES($1, $2)`, [url, urlLocal.rows[0].id])
+        return urlLocal.rows[0].id
 
     } catch (err) {
         return (err.message)
@@ -41,7 +46,7 @@ export async function getUrl(req, res) {
         const shorten = await db.query(`SELECT shorten.*, links.url FROM shorten
 		JOIN links on shorten."id" = links."shortId" WHERE shorten."id" =$1;`, [id])
         if (!shorten.rows[0]) return res.sendStatus(404)
-        
+
         res.status(200).send({
             id: id,
             shortUrl: shorten.rows[0].shortUrl,
