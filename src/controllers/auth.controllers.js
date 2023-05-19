@@ -39,6 +39,9 @@ export async function signIn(req, res){
                                 VALUES ($1, $2)`, [token,user.rows[0].id ])
         res.status(200).send({token: token})
     }catch(err){
+        if (err.code === '23505') {  // Código de erro específico para violação de chave única
+            return res.status(409).send("Usuário Logado");
+        }
         return res.status(500).send(err.message)
     }
 }
