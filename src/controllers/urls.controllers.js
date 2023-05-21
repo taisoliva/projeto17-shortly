@@ -56,3 +56,22 @@ export async function getUrl(req, res) {
         return res.status(500).send(err.message)
     }
 }
+
+export async function open(req, res){
+    const {shortUrl} = req.params
+    
+    
+    const short = await db.query(`SELECT * FROM shorten WHERE "shortUrl" = '${shortUrl}'`)
+    console.log(short.rows[0])
+    if(!short.rows[0]) return res.sendStatus(404)
+    
+
+    const url = await db.query(`SELECT * FROM links WHERE "shortId" = $1 `, [short.rows[0].id])
+    const soma = short.rows[0].visitCount + 1;
+
+    await db.query(`UPDATE shorten SET "visitCount" = '${soma}' WHERE id = '${short.rows[0].id}'`)
+
+    res.redirect(url.rows[0].url)
+    //res.sendStatus(201)
+
+}
