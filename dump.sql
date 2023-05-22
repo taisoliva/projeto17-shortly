@@ -184,22 +184,31 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 INSERT INTO public.autorization VALUES (1, 'e8fe6b03-f3b3-4967-ac9e-283195d34409', 1, '2023-05-19 18:38:05.163654');
 INSERT INTO public.autorization VALUES (3, '0a6dcc68-4bc0-4980-ace6-c632960387c7', 2, '2023-05-19 19:03:59.458895');
+INSERT INTO public.autorization VALUES (4, 'c8e060fa-f224-4906-a149-45d1805a53db', 3, '2023-05-22 10:05:42.132526');
 
 
 --
 -- Data for Name: links; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.links VALUES (1, 'https://www.driven.com.br/', 3, '2023-05-21 16:27:33.705383');
 INSERT INTO public.links VALUES (2, 'https://www.driven.com.br/', 4, '2023-05-21 16:27:40.214908');
+INSERT INTO public.links VALUES (3, 'https://www.youtube.com/channel/UCUN9lhwfMJRxMVuet7Shg0w', 5, '2023-05-22 10:06:51.310274');
+INSERT INTO public.links VALUES (4, 'https://www.youtube.com/channel/UCUN9lhwfMJRxMVuet7Shg0w', 6, '2023-05-22 10:07:26.687968');
+INSERT INTO public.links VALUES (5, 'https://www.youtube.com/channel/UCUN9lhwfMJRxMVuet7Shg0w', 7, '2023-05-22 10:07:27.798943');
+INSERT INTO public.links VALUES (6, 'https://www.youtube.com/channel/UCUN9lhwfMJRxMVuet7Shg0w', 8, '2023-05-22 10:07:28.777834');
+INSERT INTO public.links VALUES (7, 'https://www.instagram.com/', 9, '2023-05-22 10:08:29.256468');
 
 
 --
 -- Data for Name: shorten; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.shorten VALUES (4, 'rYSHiIHTfpHVrS4LO5tk8', 2, 0, '2023-05-21 16:27:40.105797');
-INSERT INTO public.shorten VALUES (3, 'RK_PZJLcVB-5oKGu5qqBG', 2, 1, '2023-05-21 16:27:33.642528');
+INSERT INTO public.shorten VALUES (4, 'rYSHiIHTfpHVrS4LO5tk8', 2, 3, '2023-05-21 16:27:40.105797');
+INSERT INTO public.shorten VALUES (5, 'bmMzEECUX1BNW9tt9peTZ', 2, 7, '2023-05-22 10:06:50.642449');
+INSERT INTO public.shorten VALUES (9, 'e9AVA80DYi0uOxsIgKdVh', 1, 5, '2023-05-22 10:08:29.156901');
+INSERT INTO public.shorten VALUES (8, 'CyabUBdI7pgrHXJxP6yZ5', 3, 1, '2023-05-22 10:07:28.755432');
+INSERT INTO public.shorten VALUES (7, 'NtMobqcUnBu1hYRYtRocE', 3, 2, '2023-05-22 10:07:27.749033');
+INSERT INTO public.shorten VALUES (6, 'hH6UXK7Q4uet2cfhCE2OZ', 3, 4, '2023-05-22 10:07:26.577966');
 
 
 --
@@ -208,34 +217,35 @@ INSERT INTO public.shorten VALUES (3, 'RK_PZJLcVB-5oKGu5qqBG', 2, 1, '2023-05-21
 
 INSERT INTO public.users VALUES (1, 'João', 'joao@driven.com.br', '$2b$10$ErrgKFfsbReCdCNGDT.fhuH63qXYPdG.ZiFe5A9ZFIM.7500NAuQy', '2023-05-19 18:37:58.898759');
 INSERT INTO public.users VALUES (2, 'maria', 'maria@driven.com.br', '$2b$10$SPwfY2IfOhOvVBdaaRXVRO7MofYpFG9btleGJBzXvBVZncBSwMK/S', '2023-05-19 19:03:48.118561');
+INSERT INTO public.users VALUES (3, 'tais', 'tais@driven.com.br', '$2b$10$msiz4wHr2rjwh0MfnLsFsu9lhk95LMcBOMa1H7qsE.BYBdYERudQm', '2023-05-22 10:05:15.591917');
 
 
 --
 -- Name: autorization_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.autorization_id_seq', 3, true);
+SELECT pg_catalog.setval('public.autorization_id_seq', 4, true);
 
 
 --
 -- Name: links_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.links_id_seq', 2, true);
+SELECT pg_catalog.setval('public.links_id_seq', 7, true);
 
 
 --
 -- Name: shorten_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.shorten_id_seq', 4, true);
+SELECT pg_catalog.setval('public.shorten_id_seq', 9, true);
 
 
 --
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 2, true);
+SELECT pg_catalog.setval('public.users_id_seq', 3, true);
 
 
 --

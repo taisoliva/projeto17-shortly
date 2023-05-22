@@ -72,6 +72,24 @@ export async function open(req, res){
     await db.query(`UPDATE shorten SET "visitCount" = '${soma}' WHERE id = '${short.rows[0].id}'`)
 
     res.redirect(url.rows[0].url)
-    //res.sendStatus(201)
+}
+
+export async function deleteUrl(req, res){
+
+    const { id } = req.params
+    const session = res.locals.session
+
+    console.log(session.userId)
+
+    const checkUrl = await db.query(`SELECT * FROM shorten WHERE id=$1`, [id])
+    if(!checkUrl.rows[0]) return res.sendStatus(404)
+
+    const shortUrl = await db.query(`SELECT * FROM shorten WHERE id=$1 AND "userId"=$2`, [id, session.userId])
+    if(!shortUrl.rows[0]) return res.sendStatus(401)
+
+    await db.query(`DELETE FROM links WHERE "shortId"=$1`,[id])
+    await db.query(`DELETE FROM shorten WHERE id=$1`,[id])
+    
+    res.sendStatus(204)
 
 }
