@@ -17,7 +17,7 @@ export async function usersMe(req, res) {
         id: session.userId,
         name: shortens.rows[0].name,
         visitCount: visitTotal.rows[0].visitCount,
-        shorteneUrls: shortens.rows.map(item => ({
+        shortenedUrls: shortens.rows.map(item => ({
             id: item.id,
             shortUrl: item.shortUrl,
             url: item.url,
