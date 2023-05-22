@@ -60,7 +60,7 @@ CREATE TABLE public.links (
     id integer NOT NULL,
     url text NOT NULL,
     "shortId" integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT now() NOT NULL
+    "createdAt" timestamp without time zone DEFAULT now()
 );
 
 
@@ -92,7 +92,8 @@ CREATE TABLE public.shorten (
     id integer NOT NULL,
     "shortUrl" text NOT NULL,
     "userId" integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT now() NOT NULL
+    "visitCount" integer DEFAULT 0 NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT now()
 );
 
 
@@ -182,30 +183,23 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 --
 
 INSERT INTO public.autorization VALUES (1, 'e8fe6b03-f3b3-4967-ac9e-283195d34409', 1, '2023-05-19 18:38:05.163654');
+INSERT INTO public.autorization VALUES (3, '0a6dcc68-4bc0-4980-ace6-c632960387c7', 2, '2023-05-19 19:03:59.458895');
 
 
 --
 -- Data for Name: links; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.links VALUES (1, 'https://g1.globo.com/', 5, '2023-05-19 18:41:10.677844');
-INSERT INTO public.links VALUES (2, 'https://g1.globo.com/', 6, '2023-05-19 18:41:45.425412');
-INSERT INTO public.links VALUES (3, 'https://g1.globo.com/', 7, '2023-05-19 18:43:04.61199');
-INSERT INTO public.links VALUES (4, 'https://g1.globo.com/', 8, '2023-05-19 18:43:22.181856');
+INSERT INTO public.links VALUES (1, 'https://www.driven.com.br/', 3, '2023-05-21 16:27:33.705383');
+INSERT INTO public.links VALUES (2, 'https://www.driven.com.br/', 4, '2023-05-21 16:27:40.214908');
 
 
 --
 -- Data for Name: shorten; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.shorten VALUES (1, '1pF7Cv540q9HPuSrEQiGE', 1, '2023-05-19 18:38:26.260054');
-INSERT INTO public.shorten VALUES (2, 'POZCdWqbbeJ5D7IgYi9Bn', 1, '2023-05-19 18:40:01.228558');
-INSERT INTO public.shorten VALUES (3, 'KwO43sCyidzv3b2fQ7XOc', 1, '2023-05-19 18:40:17.90479');
-INSERT INTO public.shorten VALUES (4, 'XT3rjq5qU7MTbBB4YO-j1', 1, '2023-05-19 18:40:52.317772');
-INSERT INTO public.shorten VALUES (5, 'QqgIIOnVj2-0EM92V3cvx', 1, '2023-05-19 18:41:10.627375');
-INSERT INTO public.shorten VALUES (6, 'uMIXjkX98zjWl4zxx2Yjz', 1, '2023-05-19 18:41:45.342949');
-INSERT INTO public.shorten VALUES (7, '9wIeuy__TKaJWCE2yfKI-', 1, '2023-05-19 18:43:04.577494');
-INSERT INTO public.shorten VALUES (8, 'wm04geuf2tc2I6rs3FNeU', 1, '2023-05-19 18:43:22.134996');
+INSERT INTO public.shorten VALUES (4, 'rYSHiIHTfpHVrS4LO5tk8', 2, 0, '2023-05-21 16:27:40.105797');
+INSERT INTO public.shorten VALUES (3, 'RK_PZJLcVB-5oKGu5qqBG', 2, 1, '2023-05-21 16:27:33.642528');
 
 
 --
@@ -213,34 +207,35 @@ INSERT INTO public.shorten VALUES (8, 'wm04geuf2tc2I6rs3FNeU', 1, '2023-05-19 18
 --
 
 INSERT INTO public.users VALUES (1, 'João', 'joao@driven.com.br', '$2b$10$ErrgKFfsbReCdCNGDT.fhuH63qXYPdG.ZiFe5A9ZFIM.7500NAuQy', '2023-05-19 18:37:58.898759');
+INSERT INTO public.users VALUES (2, 'maria', 'maria@driven.com.br', '$2b$10$SPwfY2IfOhOvVBdaaRXVRO7MofYpFG9btleGJBzXvBVZncBSwMK/S', '2023-05-19 19:03:48.118561');
 
 
 --
 -- Name: autorization_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.autorization_id_seq', 2, true);
+SELECT pg_catalog.setval('public.autorization_id_seq', 3, true);
 
 
 --
 -- Name: links_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.links_id_seq', 4, true);
+SELECT pg_catalog.setval('public.links_id_seq', 2, true);
 
 
 --
 -- Name: shorten_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.shorten_id_seq', 8, true);
+SELECT pg_catalog.setval('public.shorten_id_seq', 4, true);
 
 
 --
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 1, true);
+SELECT pg_catalog.setval('public.users_id_seq', 2, true);
 
 
 --
